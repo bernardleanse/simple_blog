@@ -11,6 +11,6 @@ for simple version of post table. Each step manually tested then committed.
 
 To Do
 
-Set up Capybara []
+Set up Capybara [x]
 Feature Test Post []
 Setup DB Connection []

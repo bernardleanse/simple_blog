@@ -5,7 +5,7 @@ require './setup_db_connection'
 
 setup_db_connection()
 
-class BlogSite < Sinatra::Base
+class SimpleBlog < Sinatra::Base
   enable :sessions, :method_override
 
   configure :development do

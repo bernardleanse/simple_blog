@@ -1,3 +1,3 @@
 require_relative "./app"
 
-run BlogSite
+run SimpleBlog

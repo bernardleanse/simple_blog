@@ -6,7 +6,7 @@ require 'capybara'
 require 'capybara/rspec'
 require 'rspec'
 
-Capybara.app = BookmarkManager
+Capybara.app = SimpleBlog
 
 RSpec.configure do |config|
  
