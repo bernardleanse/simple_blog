@@ -1,0 +1,1 @@
+CREATE TABLE posts(id serial primary key, content varchar(200));
