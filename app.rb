@@ -2,6 +2,7 @@ require 'sinatra/base'
 require 'sinatra/reloader'
 require './lib/database_connection'
 require './setup_db_connection'
+require './lib/post'
 
 setup_db_connection()
 
@@ -18,6 +19,7 @@ class SimpleBlog < Sinatra::Base
 
   get '/posts' do
     @posts = Post.all
+    p @posts
     erb :'posts/index'
   end
 
