@@ -11,3 +11,7 @@ task :drop_databases do
     PG.connect.exec("DROP DATABASE #{db}")
   end
 end
+
+task :migrate do
+  p "running migrations"
+end
