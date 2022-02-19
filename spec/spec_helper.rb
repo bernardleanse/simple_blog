@@ -5,10 +5,15 @@ require File.join(File.dirname(__FILE__), '..', 'app.rb')
 require 'capybara'
 require 'capybara/rspec'
 require 'rspec'
+require_relative './db_helpers/truncate_test_tables'
 
 Capybara.app = SimpleBlog
 
 RSpec.configure do |config|
+
+  config.before(:each) do
+    truncate_test_tables
+  end
  
   config.expect_with :rspec do |expectations|
  
