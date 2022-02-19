@@ -16,9 +16,23 @@ class SimpleBlog < Sinatra::Base
     'Welcome to the Blog Site!!'
   end
 
+  get '/posts' do
+    @posts = Post.all
+    erb :'posts/index'
+  end
+
   get '/posts/new' do
     erb :'posts/new'
   end
+
+  post '/posts' do
+    content = params['post-content']
+    Post.create(content: content)
+    redirect '/posts'
+  end
+
+
+
 
   run! if app_file == $0
 end
