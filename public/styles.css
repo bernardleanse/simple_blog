@@ -1,0 +1,14 @@
+.post {
+  text-align: center;
+  max-width: 30%;
+  border-color: black;
+  border-style: solid;
+  padding: 20px 0px 20px 0px;
+}
+
+.posts-container {
+  display: relative;
+  text-align: center;
+  width: auto;
+  margin: auto;
+}
