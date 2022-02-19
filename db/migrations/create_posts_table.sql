@@ -1,1 +1,1 @@
-CREATE TABLE posts(id serial primary key, content varchar(200));
+CREATE TABLE posts(id serial primary key, content varchar(200), time_posted datetime);

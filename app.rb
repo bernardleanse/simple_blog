@@ -19,12 +19,16 @@ class SimpleBlog < Sinatra::Base
 
   get '/posts' do
     @posts = Post.all
-    p @posts
     erb :'posts/index'
   end
 
   get '/posts/new' do
     erb :'posts/new'
+  end
+
+  get '/posts/:id/edit' do
+    @post = Post.find(id: params['id'])
+    erb :'posts/edit'
   end
 
   post '/posts' do
@@ -33,8 +37,10 @@ class SimpleBlog < Sinatra::Base
     redirect '/posts'
   end
 
-
-
-
+  patch '/posts/:id' do
+    Post.update(id: params['id'], content: params['post-content'])
+    redirect '/posts'
+  end
+  
   run! if app_file == $0
 end
