@@ -13,5 +13,8 @@ task :drop_databases do
 end
 
 task :migrate do
-  p "running migrations"
+  ['simple_blog', 'simple_blog_test'].each do |db|
+    con = PG.connect(dbname: db)
+    con.exec("CREATE TABLE posts(id serial primary key, content varchar(200));")
+  end
 end
