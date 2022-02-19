@@ -1,6 +1,7 @@
-
 require 'sinatra/base'
 require 'sinatra/reloader'
+
+
 
 class BlogSite < Sinatra::Base
   enable :sessions, :method_override
