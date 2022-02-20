@@ -6,7 +6,7 @@ class Post
   end
 
   def self.create(content:)
-    post = DatabaseConnection.query("INSERT INTO posts(content, created_at) VALUES($1) RETURNING id, content, created_at;", [content, time_now]).first
+    post = DatabaseConnection.query("INSERT INTO posts(content, created_at) VALUES($1, $2) RETURNING id, content, created_at;", [content, Time.now]).first
     return object_relation(post)
   end
 
@@ -28,9 +28,6 @@ class Post
   end
 
   private
-
-  def self.time_now
-  end
 
   def self.object_relation(post)
     Post.new(id: post["id"], content: post["content"], created_at: post["created_at"])

@@ -3,6 +3,9 @@
   <% @posts.each do |post| %>
     <div class="post">
       <%= post.content %>
+      <p class="date-time">
+        <%= post.created_at %>
+      </p>
       <form action="/posts/<%= post.id %>/edit">
         <input type="submit" name="Edit" value="Edit">
       </form>
