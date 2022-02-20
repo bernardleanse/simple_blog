@@ -6,7 +6,7 @@ class Post
   end
 
   def self.create(content:)
-    post = DatabaseConnection.query("INSERT INTO posts(content) VALUES($1) RETURNING id, content;", [content]).first
+    post = DatabaseConnection.query("INSERT INTO posts(content, created_at) VALUES($1) RETURNING id, content, created_at;", [content, time_now]).first
     return object_relation(post)
   end
 
@@ -17,20 +17,23 @@ class Post
 
   def self.update(id:, content:)
     post = DatabaseConnection.query("UPDATE posts SET content=$1 WHERE id=$2", [content, id])
-
   end
 
-  attr_reader :id, :content
+  attr_reader :id, :content, :created_at
 
-  def initialize(id:, content:)
+  def initialize(id:, content:, created_at:)
     @id = id
     @content = content
+    @created_at = created_at
   end
 
   private
 
+  def self.time_now
+  end
+
   def self.object_relation(post)
-    Post.new(id: post["id"], content: post["content"])
+    Post.new(id: post["id"], content: post["content"], created_at: post["created_at"])
   end
 
 end
