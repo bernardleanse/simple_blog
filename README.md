@@ -27,7 +27,7 @@ implement date-time [x]
   time_cop to test this []
   
 implement user sign-up [x]
-  handle invalid username []
+  handle invalid username [x]
   handle non matching password []
 
 

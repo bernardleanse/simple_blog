@@ -2,7 +2,7 @@ require 'bcrypt'
 
 class User
   def self.create(username:, password:, confirm_password:)
-    return if password != confirm_password
+    raise "Passwords don't match" if password != confirm_password
     encrypted_password = BCrypt::Password.create(password)
     user = DatabaseConnection.query(
       "INSERT INTO users(username, password) VALUES($1, $2) RETURNING id, username, password;", [username, encrypted_password]

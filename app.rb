@@ -60,7 +60,11 @@ class SimpleBlog < Sinatra::Base
     rescue PG::UniqueViolation
       flash[:notice] = "Someone already has that username, please try another."
       redirect '/users/new'
+    rescue RuntimeError then "Passwords don't match"
+      flash[:notice] = "Passwords don't match, try again."
+      redirect '/users/new'
     end
+    
     flash[:notice] = 'Registration Successful, You can now login.' if user.is_a? User
     redirect '/posts'
   end

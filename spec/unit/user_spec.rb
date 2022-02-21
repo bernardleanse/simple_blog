@@ -11,9 +11,8 @@ describe User do
       expect(user.username).to eq db_data.first['username']
     end
   
-    it 'does not create user if password doesnt match' do
-      user = User.create(username: 'bernard', password: '123', confirm_password: '1234')
-      expect(user).to eq nil
+    it 'raises exception if password doesnt match' do
+      expect{User.create(username: 'bernard', password: '123', confirm_password: '1234')}.to raise_error "Passwords don't match"
     end
 
   end
