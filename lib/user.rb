@@ -12,8 +12,9 @@ class User
 
   def self.authenticate(username:, password:)
     user = DatabaseConnection.query("SELECT * FROM users WHERE username=$1;", [username]).first
-    bcrypt_password = BCrypt::Password.new(user['password'])
-    return User.new(id: user['id'], username: user['username']) if bcrypt_password == password
+    user = nil unless user.is_a? Hash
+    bcrypt_password = BCrypt::Password.new(user['password']) if user
+    return User.new(id: user['id'], username: user['username']) if bcrypt_password == password 
     return nil
   end
 

@@ -24,6 +24,12 @@ describe User do
       expect(user).to be_a User
       expect(user.username).to eq 'bernard'
     end
+
+    it 'returns nil if incorrect' do
+      User.create(username: 'bernard', password: '123', confirm_password: '123')
+      user = User.authenticate(username: 'bernard', password: '1234')
+      expect(user).to eq nil
+    end
   end
 
   describe ".find" do
