@@ -16,26 +16,7 @@ helper sets the environment and when the app.rb is required, the DatabaseConnect
 variable @connection connects to the test, so whenever any query in this application is done, it will 
 choose the correct database depending if it's a me in the browser, or capybara doing it through rspec. 
 
-To Do
 
-Set up Capybara [x]
-Feature Test Post [x]
-Setup DB Connection [x]
-Implement delete [x]
-
-implement date-time [x]
-  time_cop to test this []
-  
-implement user sign-up [x]
-  handle invalid username [x]
-  handle non matching password [x]
-
-implement login[x]
-
-
-implement user_id to each post []
-implement each post having author name []
-implement comments []
 
 # How to use
 
