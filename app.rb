@@ -1,4 +1,5 @@
 require 'sinatra/base'
+require 'sinatra/flash'
 require 'sinatra/reloader'
 require './lib/database_connection'
 require './setup_db_connection'
@@ -8,6 +9,7 @@ setup_db_connection()
 
 class SimpleBlog < Sinatra::Base
   enable :sessions, :method_override
+  register Sinatra::Flash
 
   configure :development do
     register Sinatra::Reloader
