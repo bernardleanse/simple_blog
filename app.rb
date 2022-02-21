@@ -48,6 +48,16 @@ class SimpleBlog < Sinatra::Base
     Post.delete(id: params['id'])
     redirect '/posts'
   end
+
+  get '/users/new' do
+    erb :'users/new'
+  end
+
+  post '/users' do
+    user = User.create(username: params['username'], password: params['password'], confirm_password: params['confirm-password'])
+    flash[:notice] = 'Registration Successful, You can now login.' if user.is_a? User
+    redirect '/posts'
+  end
   
   run! if app_file == $0
 end
