@@ -2,6 +2,17 @@
   <a href="/posts/new">Create A Post</a>
   <% if @user %>
     Welcome <%= @user.username %>
+    <form action="/sessions" method="POST">
+      <input type="hidden" name="_method" value="DELETE">
+      <input type="submit" value="Log Out">
+    </form>
+  <% else %>
+    <form action="/users/new">
+      <input type="submit" value="Sign Up">
+    </form>
+    <form action="/sessions/new">
+      <input type="submit" value="Log In">
+    </form>
   <% end %>
 </div>
 <div class="flash">

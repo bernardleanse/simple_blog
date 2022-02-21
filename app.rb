@@ -85,6 +85,12 @@ class SimpleBlog < Sinatra::Base
       redirect '/sessions/new'
     end
   end
+
+  delete '/sessions' do
+    session[:user_id] = nil
+    flash[:notice] = 'Successfully Logged Out'
+    redirect '/posts'
+  end
   
   run! if app_file == $0
 end
