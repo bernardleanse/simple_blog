@@ -1,5 +1,8 @@
 <div class="nav">
   <a href="/posts/new">Create A Post</a>
+  <% if @user %>
+    Welcome <%= @user.username %>
+  <% end %>
 </div>
 <div class="flash">
   <%= flash[:notice] %>

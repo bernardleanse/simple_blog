@@ -21,6 +21,7 @@ class SimpleBlog < Sinatra::Base
   end
 
   get '/posts' do
+    @user = User.find(id: session[:user_id])
     @posts = Post.all
     erb :'posts/index'
   end
@@ -67,6 +68,22 @@ class SimpleBlog < Sinatra::Base
     
     flash[:notice] = 'Registration Successful, You can now login.' if user.is_a? User
     redirect '/posts'
+  end
+
+  get '/sessions/new' do
+    erb :'sessions/new'
+  end
+
+  post '/sessions' do
+    user = User.authenticate(username: params[:username], password: params[:password])
+    if user
+      flash[:notice] = "Login Successful!"
+      session[:user_id] = user.id
+      redirect '/posts'
+    else
+      flash[:notice] = "Check Login Details"
+      redirect '/sessions/new'
+    end
   end
   
   run! if app_file == $0

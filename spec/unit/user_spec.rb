@@ -14,6 +14,28 @@ describe User do
     it 'raises exception if password doesnt match' do
       expect{User.create(username: 'bernard', password: '123', confirm_password: '1234')}.to raise_error "Passwords don't match"
     end
+  end
 
+  describe ".authenticate" do
+    it 'returns user if pw is correct' do
+      User.create(username: 'bernard', password: '123', confirm_password: '123')
+      user = User.authenticate(username: 'bernard', password: '123')
+
+      expect(user).to be_a User
+      expect(user.username).to eq 'bernard'
+    end
+  end
+
+  describe ".find" do
+    it 'returns user if exists' do
+      created_user = User.create(username: 'bernard', password: '123', confirm_password: '123')
+      user = User.find(id: created_user.id)
+      expect(user.username).to eq 'bernard'
+    end
+
+    it 'returns nil if no user exists' do
+      user = User.find(id: 2)
+      expect(user).to eq nil      
+    end
   end
 end
