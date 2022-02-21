@@ -1,5 +1,3 @@
-require_relative './web_helpers/sign_up_and_log_in.rb'
-
 feature 'log out' do
   scenario 'a logged in user can log out' do
     User.create(username: 'bernard', password: '123', confirm_password: '123')

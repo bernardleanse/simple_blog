@@ -22,7 +22,7 @@ class SimpleBlog < Sinatra::Base
 
   get '/posts' do
     @user = User.find(id: session[:user_id])
-    @posts = Post.all
+    @posts = Post.all.reverse
     erb :'posts/index'
   end
 
@@ -37,8 +37,13 @@ class SimpleBlog < Sinatra::Base
 
   post '/posts' do
     content = params['post-content']
-    Post.create(content: content)
-    redirect '/posts'
+    if session[:user_id]
+      Post.create(content: content, user_id: session[:user_id])
+      redirect '/posts'
+    else
+      flash[:notice] = "You're not logged in!"
+      redirect '/posts'
+    end
   end
 
   patch '/posts/:id' do

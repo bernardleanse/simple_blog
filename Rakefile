@@ -17,5 +17,6 @@ task :migrate do
     con = PG.connect(dbname: db)
     con.exec("CREATE TABLE posts(id serial primary key, content varchar(200), created_at timestamp);")
     con.exec("create table users(id serial primary key, username varchar(20) unique, password varchar(200));")
+    con.exec("ALTER TABLE posts ADD user_id integer REFERENCES users(id);")
   end
 end

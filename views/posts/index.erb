@@ -25,6 +25,12 @@
       <p class="date-time">
         <%= post.created_at %>
       </p>
+      <div class="author">
+        <p>Posted By:</p>
+        <% if post.author %>
+          <%= post.author.username %>
+        <% end %>
+      </div>
       <form action="/posts/<%= post.id %>/edit">
         <input type="submit" name="Edit" value="Edit">
       </form>

@@ -6,6 +6,8 @@ require 'capybara'
 require 'capybara/rspec'
 require 'rspec'
 require_relative './db_helpers/truncate_test_tables'
+require_relative './features/web_helpers/sign_up_and_log_in.rb'
+
 
 Capybara.app = SimpleBlog
 

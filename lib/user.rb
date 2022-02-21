@@ -18,15 +18,16 @@ class User
     return nil
   end
 
-  def self.find(id:)
+  def self.find(id:) 
     user = DatabaseConnection.query("SELECT * FROM users WHERE id=$1", [id]).first
-    return User.new(id: user['id'], username: user['username']) if user
+    return User.new(id: user['id'], username: user['username']) if user.is_a? Hash
   end
 
-  attr_reader :id, :username, :password
+  attr_reader :id, :username
 
   def initialize(id:, username:)
     @id = id
     @username = username
   end
+
 end

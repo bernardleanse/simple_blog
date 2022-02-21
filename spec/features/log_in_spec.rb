@@ -9,4 +9,12 @@ feature 'Log In' do
     expect(page).to have_content "bernard"
     expect(current_path).to eq '/posts'
   end
+
+  scenario 'posts show username' do
+    sign_up_and_log_in
+    logged_in_user = DatabaseConnection.query("SELECT * from users WHERE username=$1", ['bernard']).first
+    Post.create(content: 'hello', user_id: logged_in_user['id'])
+    visit '/posts'
+    expect(first('.post')).to have_content 'bernard'
+  end
 end

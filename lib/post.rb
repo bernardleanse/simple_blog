@@ -5,8 +5,8 @@ class Post
     posts.map { |post| object_relation(post) }
   end
 
-  def self.create(content:)
-    post = DatabaseConnection.query("INSERT INTO posts(content, created_at) VALUES($1, $2) RETURNING id, content, created_at;", [content, Time.now]).first
+  def self.create(content:, user_id: nil)
+    post = DatabaseConnection.query("INSERT INTO posts(content, created_at, user_id) VALUES($1, $2, $3) RETURNING id, content, created_at, user_id;", [content, Time.now, user_id]).first
     return object_relation(post)
   end
 
@@ -24,18 +24,23 @@ class Post
   end
 
 
-  attr_reader :id, :content, :created_at
+  attr_reader :id, :content, :created_at, :user_id
 
-  def initialize(id:, content:, created_at:)
+  def initialize(id:, content:, created_at:, user_id: nil)
     @id = id
     @content = content
     @created_at = created_at
+    @user_id = user_id
   end
 
+  def author
+    User.find(id: @user_id)
+  end
+ 
   private
 
   def self.object_relation(post)
-    Post.new(id: post["id"], content: post["content"], created_at: post["created_at"])
+    Post.new(id: post["id"], content: post["content"], created_at: post["created_at"], user_id: post["user_id"])
   end
 
 end

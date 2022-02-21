@@ -43,5 +43,7 @@ describe User do
       user = User.find(id: 2)
       expect(user).to eq nil      
     end
+
+    
   end
 end
