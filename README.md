@@ -20,10 +20,14 @@ choose the correct database depending if it's a me in the browser, or capybara d
 
 # How to use
 
-Make sure you have the latest ruby and you have installed PostgreSQL
+Make sure you have ruby 3.0.2 and you have installed PostgreSQL. 
 
 ```
+  gem install bundler
   bundle install
   rake create_databases
   rake migrate
+  rackup
 ```
+
+Then vist http://localhost:9292/
