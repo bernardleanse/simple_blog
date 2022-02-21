@@ -35,4 +35,12 @@ describe Post do
       expect(fetched_post['content']).to eq "helloooo"
     end
   end
+
+  describe ".delete" do
+    it 'deletes a post' do
+      post = Post.create(content: 'hi there')
+      Post.delete(id: post.id)
+      expect(Post.all.length).to eq 0
+    end
+  end
 end

@@ -19,6 +19,11 @@ class Post
     post = DatabaseConnection.query("UPDATE posts SET content=$1 WHERE id=$2", [content, id])
   end
 
+  def self.delete(id:)
+    DatabaseConnection.query("DELETE FROM posts WHERE id=$1", [id])
+  end
+
+
   attr_reader :id, :content, :created_at
 
   def initialize(id:, content:, created_at:)

@@ -4,6 +4,7 @@ feature 'deleting a post' do
     visit '/posts'
     expect(page).to have_content 'my post'
     first('.post').click_button('Delete')
+    expect(current_path).to eq '/posts'
     expect(page).not_to have_content 'my post'
   end
 end

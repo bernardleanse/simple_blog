@@ -41,6 +41,11 @@ class SimpleBlog < Sinatra::Base
     Post.update(id: params['id'], content: params['post-content'])
     redirect '/posts'
   end
+
+  delete '/posts/:id/delete' do
+    Post.delete(id: params['id'])
+    redirect '/posts'
+  end
   
   run! if app_file == $0
 end
