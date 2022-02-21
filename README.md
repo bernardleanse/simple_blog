@@ -28,7 +28,9 @@ implement date-time [x]
   
 implement user sign-up [x]
   handle invalid username [x]
-  handle non matching password []
+  handle non matching password [x]
+
+implement login[]
 
 
 implement user_id to each post []
