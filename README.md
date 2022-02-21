@@ -34,4 +34,4 @@ Make sure you have ruby 3.0.2 and you have installed PostgreSQL.
   rackup
 ```
 
-Then vist http://localhost:9292/
+Then vist http://localhost:9292/posts
