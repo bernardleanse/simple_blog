@@ -15,6 +15,6 @@ describe User do
       user = User.create(username: 'bernard', password: '123', confirm_password: '1234')
       expect(user).to eq nil
     end
-    
+
   end
 end

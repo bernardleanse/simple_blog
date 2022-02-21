@@ -21,12 +21,16 @@ To Do
 Set up Capybara [x]
 Feature Test Post [x]
 Setup DB Connection [x]
-Implement delete []
+Implement delete [x]
 
 implement date-time [x]
-  time_cop to test this [x]
+  time_cop to test this []
   
-implement user sign-up []
+implement user sign-up [x]
+  handle invalid username []
+  handle non matching password []
+
+
 implement user_id to each post []
 implement each post having author name []
 implement comments []

@@ -4,6 +4,7 @@ require 'sinatra/reloader'
 require './lib/database_connection'
 require './setup_db_connection'
 require './lib/post'
+require './lib/user'
 
 setup_db_connection()
 
@@ -54,7 +55,12 @@ class SimpleBlog < Sinatra::Base
   end
 
   post '/users' do
-    user = User.create(username: params['username'], password: params['password'], confirm_password: params['confirm-password'])
+    begin
+      user = User.create(username: params['username'], password: params['password'], confirm_password: params['confirm-password'])
+    rescue PG::UniqueViolation
+      flash[:notice] = "Someone already has that username, please try another."
+      redirect '/users/new'
+    end
     flash[:notice] = 'Registration Successful, You can now login.' if user.is_a? User
     redirect '/posts'
   end
