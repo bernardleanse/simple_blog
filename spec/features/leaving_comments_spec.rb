@@ -1,5 +1,6 @@
 feature 'leaving comments' do
   scenario 'leave comment' do
+    allow(:sessions)
     visit '/users/new'
     fill_in 'username', with: 'bernard'
     fill_in 'password', with: 'password'

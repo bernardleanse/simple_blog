@@ -5,6 +5,7 @@ require './lib/database_connection'
 require './setup_db_connection'
 require './lib/post'
 require './lib/user'
+require './lib/comment'
 
 setup_db_connection()
 
@@ -99,7 +100,7 @@ class SimpleBlog < Sinatra::Base
   end
 
   post '/posts/:id/comments' do
-    Comment.create(content: params['comment-content'], post_id: params['id'], user_id: sessions[:user_id])
+    Comment.create(content: params['comment-content'], post_id: params['id'], user_id: session[:user_id])
     flash[:notice] = 'comment posted'
     redirect '/posts'
   end
