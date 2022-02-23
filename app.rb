@@ -37,13 +37,9 @@ class SimpleBlog < Sinatra::Base
 
   post '/posts' do
     content = params['post-content']
-    if session[:user_id]
-      Post.create(content: content, user_id: session[:user_id])
-      redirect '/posts'
-    else
-      flash[:notice] = "You're not logged in!"
-      redirect '/posts'
-    end
+    Post.create(content: content, user_id: session[:user_id])
+    redirect '/posts'
+   
   end
 
   patch '/posts/:id' do
@@ -96,6 +92,18 @@ class SimpleBlog < Sinatra::Base
     flash[:notice] = 'Successfully Logged Out'
     redirect '/posts'
   end
+
+  get '/posts/:id/comments/new' do
+    @post = Post.find(id: params['id'])
+    erb :'comments/new'
+  end
+
+  post '/posts/:id/comments' do
+    Comment.create(content: params['comment-content'], post_id: params['id'], user_id: sessions[:user_id])
+    flash[:notice] = 'comment posted'
+    redirect '/posts'
+  end
+     
   
   run! if app_file == $0
 end
