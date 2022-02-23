@@ -1,5 +1,6 @@
 body {
   font-family: Arial, Verdana, sans-serif;
+  margin: 0px;
 }
 
 .post {
@@ -14,6 +15,34 @@ body {
   padding: 20px 0px 20px 0px;
 }
 
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  height: 3rem;
+  background-image: linear-gradient(#37403f, #565957)
+}
+
+.create-post {
+  display: block;
+  float: left;
+  border-color: blue;
+  border-width: 10px;
+}
+
+.right {
+  display: block;
+  float: right;
+}
+
+li form {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
 .posts-container {
   display: relative;
   text-align: center;
@@ -21,6 +50,3 @@ body {
   margin: auto;
 }
 
-.nav {
-  text-align: center;
-}

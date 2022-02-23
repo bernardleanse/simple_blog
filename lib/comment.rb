@@ -28,6 +28,4 @@ class Comment
     Comment.new(id: rel['id'], content: rel['content'], post_id: rel['post_id'], user_id: rel['user_id'])
   end
 
-
-
 end
