@@ -36,6 +36,10 @@ class Post
   def author
     User.find(id: @user_id)
   end
+
+  def comments
+    Comment.where(post_id: @id)
+  end
  
   private
 

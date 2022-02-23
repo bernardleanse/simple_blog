@@ -31,6 +31,14 @@
           <%= post.author.username %>
         <% end %>
       </div>
+      <div class="comments-container">
+        <h2 class="comments-header">Comments</h2>
+        <% post.comments.each do |comment| %>
+          <div class="comment">
+            <%= comment.content %>
+          </div>
+        <% end %>
+      </div>
       <form action="/posts/<%= post.id %>/edit">
         <input type="submit" name="Edit" value="Edit">
       </form>
