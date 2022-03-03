@@ -11,7 +11,6 @@ feature 'leaving comments' do
     fill_in 'password', with: '123'
     click_button 'Submit'
     post = Post.create(content: 'Hello there')
-    puts "the post id is #{post.id}"
     visit '/posts'
     first('.post').click_button 'Comment'
     expect(current_path).to eq "/posts/#{post.id}/comments/new"
