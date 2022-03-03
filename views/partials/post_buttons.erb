@@ -1,0 +1,12 @@
+<form action="/posts/<%= post.id %>/edit">
+  <input type="submit" name="Edit" value="Edit">
+</form>
+
+<form action="/posts/<%= post.id %>/delete" method="POST">
+  <input type="hidden" name="_method" value="DELETE">
+  <input type="submit" name="Delete" value="Delete">
+</form>
+
+<form action="/posts/<%= post.id %>/comments/new">
+  <input type="submit" value="Comment">
+</form>
