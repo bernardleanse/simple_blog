@@ -2,12 +2,11 @@ ENV['RACK_ENV'] = 'test'
 
 require File.join(File.dirname(__FILE__), '..', 'app.rb')
 
+require_relative './helpers/web_helpers'
 require 'capybara'
 require 'capybara/rspec'
 require 'rspec'
 require_relative './db_helpers/truncate_test_tables'
-require_relative './features/web_helpers/sign_up_and_log_in.rb'
-
 
 Capybara.app = SimpleBlog
 
