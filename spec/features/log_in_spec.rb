@@ -11,10 +11,9 @@ feature 'Log In' do
   end
 
   scenario 'posts show username' do
-    sign_up_and_log_in
-    logged_in_user = DatabaseConnection.query("SELECT * from users WHERE username=$1", ['bernard']).first
-    Post.create(content: 'hello', user_id: logged_in_user['id'])
+    sign_up_and_log_in # signs up with username 'baz'
+    create_test_post
     visit '/posts'
-    expect(first('.post')).to have_content 'bernard'
+    expect(first('.post')).to have_content 'baz'
   end
 end
