@@ -18,7 +18,7 @@ class SimpleBlog < Sinatra::Base
   end
 
   get '/' do
-    'Welcome to the Blog Site!!'
+    redirect '/posts'
   end
 
   get '/posts' do
@@ -32,6 +32,11 @@ class SimpleBlog < Sinatra::Base
   end
 
   get '/posts/:id/edit' do
+    unless @user 
+      flash[:notice] = "You don't have permission"
+      redirect '/posts'
+    end
+
     @post = Post.find(id: params['id'])
     erb :'posts/edit'
   end
